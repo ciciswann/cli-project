@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+
+git_souce(:github) {|cli_project| "https://github.com/cccswann/cli_project.git"}
+
+gem "pry"
