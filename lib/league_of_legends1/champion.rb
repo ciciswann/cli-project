@@ -1,11 +1,11 @@
 class Champion
-    #attr_accessor :name, :title, :stats, :tags
+    attr_accessor :name, :title, :stats, :tags
     @@all = []
 
     def initialize(name:, title:, :tags)
         self.name = name
         self.title = title
-        self.tags
+        self.tags = tags
         save
     end
     
@@ -17,3 +17,4 @@ class Champion
         @@all
     end
 end
+
