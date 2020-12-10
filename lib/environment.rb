@@ -12,9 +12,9 @@ require "pry"
 #require "mini_magick"
 #require "rmagick"
 #require "ascii-image"
-require 'colorize'
-require 'figlet'
-require'tty-prompt'
+require "colorize"
+require "figlet"
+require "tty-prompt"
 
 module LeagueOfLegends
   class Error < StandardError; end

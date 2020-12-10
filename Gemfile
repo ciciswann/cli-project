@@ -4,6 +4,7 @@ source "https://rubygems.org"
 gemspec
 
 gem 'rake', '~> 12.0'
+gem 'net/http'
 gem 'httparty'
 gem 'cli_pix'
 gem 'pry'

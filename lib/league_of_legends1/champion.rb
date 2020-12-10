@@ -1,11 +1,12 @@
 class Champion
-    attr_accessor :name, :title, :stats, :tags
+    #attr_accessor :name, :title, :stats, :tags
     @@all = []
 
-    def initialize(name:, title:, :tags)
-        self.name = name
-        self.title = title
-        self.tags = tags
+    def initialize(champ_hash)
+        champ_hash.each do |key, value|
+            self.class.attr_accessor key
+            self.send("#{key}=", value)
+        end
         save
     end
     
