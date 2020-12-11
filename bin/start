@@ -3,4 +3,5 @@
 require_relative '../lib/environment.rb'
 
 API.new.call
-#CLI.new.main_page
+
+CLI.new.run

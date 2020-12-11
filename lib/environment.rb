@@ -15,6 +15,7 @@ require "pry"
 require "colorize"
 require "figlet"
 require "tty-prompt"
+require "tty-table"
 
 module LeagueOfLegends
   class Error < StandardError; end

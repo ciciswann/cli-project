@@ -2,12 +2,13 @@ require 'tty-prompt'
 require 'colorize'
 
 class CLI
-
+    attr_reader :champions
+    
     @@prompt = TTY::Prompt.new(active_color: :bold)
 
     ## MAIN PAGE ASCII BANNER ##
 
-    def self.banner
+    def banner
         puts "
         
     ██╗     ███████╗ █████╗  ██████╗ ██╗   ██╗███████╗     ██████╗ ███████╗    
@@ -38,17 +39,17 @@ class CLI
 
     ## MAIN PAGE ##
 
-    def self.main_page
+    def run
         system 'clear'
-        self.banner
+        banner
+        #@champions = API.call
         choices = ["Overview: What is League of Legends?", "Search by Name", "Search by Class", "Exit"]
         nav = @@prompt.select("Please select from the options below:\n", choices)
         if nav == "Overview: What is League of Legends?"
             # need to create class method
             CLI.exit
         elsif nav == "Search by Name"
-            # need to create class method
-            CLI.exit
+            list_champions
         elsif nav == "Search by Class"
             # need to create class method
             CLI.exit
@@ -56,8 +57,14 @@ class CLI
             CLI.exit
         end
     end 
+
+    def list_champions
+        #system 'clear'
+        Champion.all
+        #Champion.display_grid_of_champs
+    end
                                                                                                                                               
                                                                            
 end
 
-CLI.main_page
+CLI.new.run
