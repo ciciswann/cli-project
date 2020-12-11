@@ -17,5 +17,9 @@ class Champion
     def self.all
         @@all
     end
+
+    
 end
+
+binding.pry
 
