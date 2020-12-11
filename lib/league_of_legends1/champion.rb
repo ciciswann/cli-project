@@ -1,5 +1,5 @@
-require 'pry'
-require 'tty-table'
+require_relative '../environment.rb'
+
 class Champion
     #attr_accessor :name, :title, :stats, :tags
     @@all = []
@@ -21,20 +21,19 @@ class Champion
     end
 
     def self.sorted_champs
-        binding.pry
         all.sort_by(&:name)
     end
 
     def self.display_grid_of_champs
+        #API.new.call
         champ_table = TTY::Table.new(header: ["Id", "Name"])
         sorted_champs.each.with_index(1) do |champ, i| 
             champ_table << ["#{i}".red, "#{champ.name}"]
         end
-        #binding.pry
         puts champ_table.render(:unicode)
     end
     
 end
 
-binding.pry
+#binding.pry
 

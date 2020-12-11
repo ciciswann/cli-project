@@ -1,8 +1,8 @@
+require_relative '../environment.rb'
 require 'tty-prompt'
-require 'colorize'
 
 class CLI
-    attr_reader :champions
+    #attr_reader :champions
     
     @@prompt = TTY::Prompt.new(active_color: :bold)
 
@@ -25,8 +25,17 @@ class CLI
     ╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝".colorize(:yellow)   
         puts "  
     █▀▀ █░█ ▄▀█ █▀▄▀█ █▀█ █ █▀█ █▄░█   █▀▀ ▄▀█ ▀█▀ ▄▀█ █░░ █▀█ █▀▀ █░█ █▀▀
-    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █▀█ ░█░ █▀█ █▄▄ █▄█ █▄█ █▄█ ██▄\n\n".colorize(:white)
+    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █▀█ ░█░ █▀█ █▄▄ █▄█ █▄█ █▄█ ██▄\n\n"
 
+    end
+
+    def list_banner
+        puts "
+        .d88b 8                         w                8    w       w   
+        8P    8d8b. .d88 8d8b.d8b. 88b. w .d8b. 8d8b.    8    w d88b w8ww 
+        8b    8P Y8 8  8 8P Y8P Y8 8  8 8 8' .8 8P Y8    8    8 `Yb.  8   
+        `Y88P 8   8 `Y88 8   8   8 88P' 8 `Y8P' 8   8    8888 8 Y88P  Y8P 
+                                   8                                      \n".colorize(:yellow)
     end
 
     ## EXIT ##
@@ -42,14 +51,13 @@ class CLI
     def run
         system 'clear'
         banner
-        #@champions = API.call
         choices = ["Overview: What is League of Legends?", "Search by Name", "Search by Class", "Exit"]
         nav = @@prompt.select("Please select from the options below:\n", choices)
         if nav == "Overview: What is League of Legends?"
             # need to create class method
             CLI.exit
         elsif nav == "Search by Name"
-            list_champions
+            champ_select
         elsif nav == "Search by Class"
             # need to create class method
             CLI.exit
@@ -60,11 +68,20 @@ class CLI
 
     def list_champions
         #system 'clear'
-        Champion.all
-        #Champion.display_grid_of_champs
+        #Champion.all
+        #list_banner
+        API.new.call
+        Champion.display_grid_of_champs
     end
+
+    def champ_select
+        system 'clear'
+        list_banner
+        @@prompt.enum_select("Select a champion:\n", list_champions)
+    end
+
                                                                                                                                               
                                                                            
 end
 
-CLI.new.run
+#CLI.new.run

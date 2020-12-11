@@ -1,2 +1,4 @@
-class Champion_class
+class ChampionClass
+    
+
 end
