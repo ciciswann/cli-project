@@ -16,6 +16,9 @@ require "colorize"
 require "figlet"
 require "tty-prompt"
 require "tty-table"
+#require "artii"
+#require 'AsciiGenerator'
+require 'ruby_figlet'
 
 module LeagueOfLegends
   class Error < StandardError; end

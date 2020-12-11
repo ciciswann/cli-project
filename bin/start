@@ -5,3 +5,5 @@ require_relative '../lib/environment.rb'
 #API.new.call
 #Champion.display_grid_of_champs
 CLI.new.run
+
+#Champion.display_champ_info

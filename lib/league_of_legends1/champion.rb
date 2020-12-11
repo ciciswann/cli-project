@@ -1,7 +1,15 @@
 require_relative '../environment.rb'
+require 'figlet'
+require 'artii'
+require 'AsciiGenerator'
+require 'ruby_figlet'
+using RubyFiglet
+
 
 class Champion
     #attr_accessor :name, :title, :stats, :tags
+
+
     @@all = []
 
     def initialize(champ_hash)
@@ -20,9 +28,13 @@ class Champion
         @@all
     end
 
-    def self.sorted_champs
+    def self.sorted_champ_names
         all.sort_by(&:name)
         all.map(&:name)
+    end
+
+    def self.sorted_champs
+        all.sort_by(&:name)
     end
 
     def self.display_grid_of_champs
@@ -33,6 +45,27 @@ class Champion
         end
         puts champ_table.render(:unicode)
     end
+
+    def display_champ_info
+        #font = Figlet::Font.new('big.flf')
+        #figlet = Figlet::Typesetter.new(font)
+        #font = Artii::Base.new :font => 'cybermedium'
+
+        #puts figlet["#{name}"]
+        system 'clear'
+        #binding.pry
+        champ = "#{name}"
+        champ.art!("cybermedium")
+        puts champ.colorize(:yellow)
+        puts"\n"
+        puts "Title: #{title.capitalize}"
+        if champ_class.count == 2
+            puts "Class: #{champ_class[0]}, #{champ_class[1]}\n"
+        else 
+            puts "Class: #{champ_class[0]}\n"
+        end
+    end     
+
     
 end
 

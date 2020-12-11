@@ -1,10 +1,13 @@
 require_relative '../environment.rb'
 require 'tty-prompt'
+require 'figlet'
 
 class CLI
     attr_reader :champions
     
-    @@prompt = TTY::Prompt.new(active_color: :bold)
+    @@prompt = TTY::Prompt.new(active_color: :bold, symbols: {marker: "➤"})
+    #@@font = Figlet::Font.new('chunky_bacon.txt')
+    #@@figlet = Figlet::Typesetter.new(@@font)
 
     ## MAIN PAGE ASCII BANNER ##
 
@@ -82,12 +85,20 @@ class CLI
         #convert_i =
         API.new.call
         @champions = Champion.sorted_champs
-        @@prompt.enum_select("Type the number corresponding to the champion you'd like to learn more about:", @champions)
-
+        @champ_names = Champion.sorted_champ_names
+        nav = @@prompt.enum_select("Type the number corresponding to the champion you'd like to learn more about, then hit enter:", @champ_names, per_page: 10)
+        @champions.each do |champ|
+            #binding.pry
+            if nav == champ.name
+                champ.display_champ_info
+            end
+        end
     end
 
-    def display_champ_info
-    end
+    #def display_champ
+        #puts @@figlet[champ_name]
+        #self.display_champ_info
+    #end
 
                                                                                                                                               
                                                                            
