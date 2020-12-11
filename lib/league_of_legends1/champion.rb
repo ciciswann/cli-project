@@ -22,6 +22,7 @@ class Champion
 
     def self.sorted_champs
         all.sort_by(&:name)
+        all.map(&:name)
     end
 
     def self.display_grid_of_champs

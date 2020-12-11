@@ -2,7 +2,7 @@ require_relative '../environment.rb'
 require 'tty-prompt'
 
 class CLI
-    #attr_reader :champions
+    attr_reader :champions
     
     @@prompt = TTY::Prompt.new(active_color: :bold)
 
@@ -77,7 +77,16 @@ class CLI
     def champ_select
         system 'clear'
         list_banner
-        @@prompt.enum_select("Select a champion:\n", list_champions)
+        #puts "Type the number corresponding to the champion you'd like to learn more about, or type exit to leave"
+        #input = gets.strip
+        #convert_i =
+        API.new.call
+        @champions = Champion.sorted_champs
+        @@prompt.enum_select("Type the number corresponding to the champion you'd like to learn more about:", @champions)
+
+    end
+
+    def display_champ_info
     end
 
                                                                                                                                               
