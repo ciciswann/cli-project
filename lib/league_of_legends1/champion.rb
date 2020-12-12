@@ -1,10 +1,4 @@
-#require_relative '../environment.rb'
-#require 'figlet'
-#require 'artii'
-#require 'AsciiGenerator'
-#require 'ruby_figlet'
 using RubyFiglet
-
 
 class Champion
 
@@ -59,7 +53,6 @@ class Champion
             puts "Class: #{champ_class[0]}"
             puts "\n"
         end
-        #binding.pry
         puts "Attack: #{info["attack"]}"
         puts "Defense: #{info["defense"]}"
         puts "Magic: #{info["magic"]}"
@@ -71,5 +64,5 @@ class Champion
     
 end
 
-#binding.pry
+
 

@@ -1,10 +1,11 @@
 class Scraper
-    BASE_URL = "https://www.mobafire.com/league-of-legends/build/fundamentals-league-of-legends-new-player-beginner-guide-371292"
 
-    def self.scrape
+    BASE_URL = "https://en.wikipedia.org/wiki/League_of_Legends"
+
+    def self.scrape_overview
         opened_url = URI.open(BASE_URL)
-        doc = Nokogiri::XML(opened_url)
-        #binding.pry
-
+        doc = Nokogiri::HTML(opened_url)
+        doc.css("div.mw-parser-output p")[1,2].text
     end 
+
 end

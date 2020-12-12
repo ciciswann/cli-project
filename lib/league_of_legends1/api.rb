@@ -1,4 +1,5 @@
 class API
+    
     URL = "http://ddragon.leagueoflegends.com/cdn/10.24.1/data/en_US/champion.json"
     
     def call

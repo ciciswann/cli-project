@@ -1,8 +1,9 @@
 
 class CLI
+
     attr_reader :champions, :champ_names
     
-    @@prompt = TTY::Prompt.new(active_color: :bright_yellow, symbols: {marker: ">"})
+    @@prompt = TTY::Prompt.new(active_color: :bright_yellow, symbols: {marker: ">"}, interrupt: :exit)
     
     def initialize
         API.new.call
@@ -64,7 +65,7 @@ class CLI
         system 'clear'
     end
 
-    ## BACK to MAIN PAGE or EXIT ##
+    ## BACK to MAIN PAGE or EXIT OPTION ##
 
     def back_main
         choice = ["Back to Main", "Exit"]
@@ -82,22 +83,21 @@ class CLI
         CLI.clear
         #API.new.call - can't put API call in run method, it will call everytime you go back to "Main"
         banner
-        choices = ["Overview: What is League of Legends?", "Search by Name", "Search by Class", "Exit"]
+        choices = ["Overview: What is League of Legends?", "Search by Champion Name", "Exit"]
         nav = @@prompt.select("Please select from the options below:\n", choices)
         if nav == "Overview: What is League of Legends?"
-            # need to create method
             about_lol
-        elsif nav == "Search by Name"
+        elsif nav == "Search by Champion Name"
             champ_select
-        elsif nav == "Search by Class"
-            # need to create method
-            CLI.exit
+        #elsif nav == "Search by Class" - additional feature I'd like to add if there's more time
+            # need to create method 
+            #CLI.exit
         elsif nav == "Exit"
             CLI.exit
         end
     end 
 
-## CHAMPION SELECTION MENU ##
+    ## CHAMPION SELECTION MENU ##
 
     def champ_select
         CLI.clear
@@ -105,7 +105,7 @@ class CLI
         #API.new.call
         @champions = Champion.sorted_champs
         @champ_names = Champion.sorted_champ_names
-        nav = @@prompt.enum_select("Type the number corresponding to the champion you'd like to learn more about, then hit enter:", @champ_names, per_page: 20, show_help: :always)
+        nav = @@prompt.enum_select("Type the number corresponding to the champion you'd like to learn more about, then hit Enter:", @champ_names, per_page: 20)
         @champions.each do |champ|
             #binding.pry
             if nav == champ.name
@@ -127,13 +127,13 @@ class CLI
         end
     end
 
+    ## ABOUT LEAGUE OVERVIEW ##
+
     def about_lol
         CLI.clear
         overview_banner
-        # need to add scraped content
+        Overview.print_overview
         back_main
     end                                                                                                                           
                                                                            
 end
-
-#CLI.new.run
