@@ -2,7 +2,7 @@
 [![Depfu](https://badges.depfu.com/badges/fe0e64a73a0b81253786afc4d2e40511/overview.svg)](https://depfu.com/github/cccswann/cli_project?project_id=18178)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An CLI tool for finding basic information and stats on the 152 playable champions in the MOBA (Multiplayer Online Battle Arena) game, League of Legends.
+A CLI tool for finding basic information and stats on the 152 playable champions in the MOBA (Multiplayer Online Battle Arena) game, League of Legends.
 
 <p align="center"><img src="demo_gif.gif" width="500"/></p>
 
