@@ -1,6 +1,8 @@
-# League of Legends: Champion Catalogue
+# League of Legends: Champion Catalogue - CLI Project
 
-This application is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
+<p align="center"><img src="demo_gif.gif" width="500"/></p>
+
+
 
 ## Installation
 
@@ -8,3 +10,5 @@ This application is not endorsed, certified or otherwise approved in any way by 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+This application is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
