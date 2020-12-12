@@ -1,13 +1,11 @@
-#require_relative '../environment.rb'
-require 'tty-prompt'
-#require 'figlet'
 
 class CLI
-    attr_reader :champions
+    attr_reader :champions, :champ_names
     
     @@prompt = TTY::Prompt.new(active_color: :bright_yellow, symbols: {marker: "➤"})
-    #@@font = Figlet::Font.new('chunky_bacon.txt')
-    #@@figlet = Figlet::Typesetter.new(@@font)
+    def initialize
+        API.new.call
+    end
 
     ## ASCII TEXT BANNERS ##
 
@@ -40,8 +38,14 @@ class CLI
     puts "    _.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.\n\n"
     end
 
-    #def overview_banner
-    #end
+    def overview_banner
+        puts "
+
+    ▄▀█ █▄▄ █▀█ █░█ ▀█▀   █░░ █▀█ █░░
+    █▀█ █▄█ █▄█ █▄█ ░█░   █▄▄ █▄█ █▄▄".colorize(:yellow)
+        puts "    _.~'~._.~'~._.~'~._.~'~._.~'~._.~'\n\n"
+    
+    end
 
     #def class_banner
     #end
@@ -49,24 +53,42 @@ class CLI
     ## EXIT ##
 
     def self.exit
-        system 'clear'
+        clear
         puts "\n Thanks for using my program! \n"
         puts "\n"
         sleep 0.75
         system 'exit!'
     end
 
-    ## MAIN PAGE ##
+    ## SYSTEM CLEAR ##
+
+    def self.clear
+        system 'clear'
+    end
+
+    ## BACK to MAIN PAGE or EXIT ##
+
+    def back_main
+        choice = ["Back to Main", "Exit"]
+        back_nav = @@prompt.select("\n", choice)
+        if back_nav == "Back to Main"
+            run
+        elsif "Exit"
+            CLI.exit
+        end
+    end
+
+    ## MAIN MENU ##
 
     def run
-        system 'clear'
-        API.new.call
+        CLI.clear
+        #API.new.call - can't put API call in run method, it will call everytime you go back to "Main"
         banner
         choices = ["Overview: What is League of Legends?", "Search by Name", "Search by Class", "Exit"]
         nav = @@prompt.select("Please select from the options below:\n", choices)
         if nav == "Overview: What is League of Legends?"
             # need to create method
-            CLI.exit
+            about_lol
         elsif nav == "Search by Name"
             champ_select
         elsif nav == "Search by Class"
@@ -85,10 +107,10 @@ class CLI
         #Champion.display_grid_of_champs
     #end
 
-## CHAMPION SELECTION PAGE ##
+## CHAMPION SELECTION MENU ##
 
     def champ_select
-        system 'clear'
+        CLI.clear
         list_banner
         #API.new.call
         @champions = Champion.sorted_champs
@@ -104,22 +126,23 @@ class CLI
     end
 
     def champ_select_back
-        choice = ["Back", "Exit"]
+        choice = ["Back to Champion List", "Back to Main", "Exit"]
         back_nav = @@prompt.select("\n", choice)
-        if back_nav == "Back"
+        if back_nav == "Back to Champion List"
             champ_select
+        elsif back_nav == "Back to Main"
+            self.run
         elsif "Exit"
             CLI.exit
         end
     end
 
-
-    #def display_champ
-        #puts @@figlet[champ_name]
-        #self.display_champ_info
-    #end
-
-                                                                                                                                              
+    def about_lol
+        CLI.clear
+        overview_banner
+        # need to add scraped content
+        back_main
+    end                                                                                                                           
                                                                            
 end
 
