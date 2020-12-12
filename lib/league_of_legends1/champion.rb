@@ -1,14 +1,13 @@
-require_relative '../environment.rb'
-require 'figlet'
-require 'artii'
-require 'AsciiGenerator'
+#require_relative '../environment.rb'
+#require 'figlet'
+#require 'artii'
+#require 'AsciiGenerator'
 require 'ruby_figlet'
 using RubyFiglet
 
 
 class Champion
     #attr_accessor :name, :title, :stats, :tags
-
 
     @@all = []
 
@@ -29,7 +28,7 @@ class Champion
     end
 
     def self.sorted_champ_names
-        all.sort_by(&:name)
+        sorted_champs
         all.map(&:name)
     end
 
@@ -37,13 +36,13 @@ class Champion
         all.sort_by(&:name)
     end
 
-    def self.display_grid_of_champs
+    def display_stat_grid
         #API.new.call
-        champ_table = TTY::Table.new(header: ["Id", "Name"])
-        sorted_champs.each.with_index(1) do |champ, i| 
-            champ_table << ["#{i}".red, "#{champ.name}"]
+        champ_table = TTY::Table.new(header: ["Stat", ""])
+        stats.each do |k, v| 
+            champ_table << ["#{k}", "#{v}"]
         end
-        puts champ_table.render(:unicode)
+        puts champ_table.render(:ascii)
     end
 
     def display_champ_info
@@ -56,14 +55,18 @@ class Champion
         #binding.pry
         champ = "#{name}"
         champ.art!("cybermedium")
+
         puts champ.colorize(:yellow)
+        puts "#{title}".split.map(&:capitalize).join(' ')
         puts"\n"
-        puts "Title: #{title.capitalize}"
         if champ_class.count == 2
-            puts "Class: #{champ_class[0]}, #{champ_class[1]}\n"
+            puts "Class: #{champ_class[0]}, #{champ_class[1]}"
+            puts "\n"
         else 
-            puts "Class: #{champ_class[0]}\n"
+            puts "Class: #{champ_class[0]}"
+            puts "\n"
         end
+        display_stat_grid
     end     
 
     
