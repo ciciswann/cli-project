@@ -14,6 +14,6 @@ Clone this project into your local machine and follow the instructions below:
 ### Installation 
 After cloning:
 * Install the gems required: `bundle install`
-* To start, run the following command from the project folder: `./bin/start.rb`
+* To start, run the following command from the project folder: `./bin/start`
 
 This application is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
