@@ -2,7 +2,8 @@
 class CLI
     attr_reader :champions, :champ_names
     
-    @@prompt = TTY::Prompt.new(active_color: :bright_yellow, symbols: {marker: "➤"})
+    @@prompt = TTY::Prompt.new(active_color: :bright_yellow, symbols: {marker: ">"})
+    
     def initialize
         API.new.call
     end
@@ -23,10 +24,10 @@ class CLI
     ██║     █████╗  ██║  ███╗█████╗  ██╔██╗ ██║██║  ██║███████╗                
     ██║     ██╔══╝  ██║   ██║██╔══╝  ██║╚██╗██║██║  ██║╚════██║                
     ███████╗███████╗╚██████╔╝███████╗██║ ╚████║██████╔╝███████║                
-    ╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝".colorize(:yellow)   
+    ╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝".colorize(:light_yellow)   
         puts "  
     █▀▀ █░█ ▄▀█ █▀▄▀█ █▀█ █ █▀█ █▄░█   █▀▀ ▄▀█ ▀█▀ ▄▀█ █░░ █▀█ █▀▀ █░█ █▀▀
-    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █▀█ ░█░ █▀█ █▄▄ █▄█ █▄█ █▄█ ██▄\n\n"
+    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █▀█ ░█░ █▀█ █▄▄ █▄█ █▄█ █▄█ ██▄\n\n".colorize(:light_white)
 
     end
 
@@ -34,7 +35,7 @@ class CLI
         puts "
 
     █▀▀ █░█ ▄▀█ █▀▄▀█ █▀█ █ █▀█ █▄░█   █░░ █ █▀ ▀█▀
-    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █ ▄█ ░█░".colorize(:yellow)
+    █▄▄ █▀█ █▀█ █░▀░█ █▀▀ █ █▄█ █░▀█   █▄▄ █ ▄█ ░█░".colorize(:light_yellow)
     puts "    _.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.\n\n"
     end
 
@@ -46,9 +47,6 @@ class CLI
         puts "    _.~'~._.~'~._.~'~._.~'~._.~'~._.~'\n\n"
     
     end
-
-    #def class_banner
-    #end
 
     ## EXIT ##
 
@@ -98,14 +96,6 @@ class CLI
             CLI.exit
         end
     end 
-
-    #def list_champions
-        #system 'clear'
-        #Champion.all
-        #list_banner
-        #API.new.call
-        #Champion.display_grid_of_champs
-    #end
 
 ## CHAMPION SELECTION MENU ##
 

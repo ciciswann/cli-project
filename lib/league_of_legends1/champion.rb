@@ -49,7 +49,7 @@ class Champion
         champ = "#{name}"
         champ.art!("fire_font-k")
 
-        puts champ.colorize(:red)
+        puts champ.colorize(:light_red)
         puts "#{title}".split.map(&:capitalize).join(' ')
         puts"\n"
         if champ_class.count == 2

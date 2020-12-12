@@ -4,5 +4,5 @@ require_relative '../lib/environment.rb'
 
 #API.new.call
 CLI.new.run
-
+#Scraper.scrape
 
